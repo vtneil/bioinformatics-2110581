@@ -1,0 +1,45 @@
+ATAGTGCCGTGGCCGCGGGACGG--------------------------------------------------TACGGAGCCTATCCCCTCGCCAGCCGATTCTGCCACCCCGACGCACTGGCCGGGAGCCGTCGCTCGGGCGATGGCCG
+ATAGTGCCGTGGCCGCGGGACGGTACGGAGCCTATCCCCTCGCCAGCCGATTCTGCCACCCCGACGCACTGGCTACGGAGCCTATCCCCTCGCCAGCCGATTCTGCCACCCCGACGCACTGGCCGGGAGCCGTCGCTCGGGCGATGGCCG
+ATAGTGCCGTGG>2         TACGGAGCCTAT>1
+ TAGTGCCGTGGC>2          CGGAGCCTATCC>1
+   GTGCCGTGGCCG>2             CCTATCCCCTCG>1
+      CCGTGGCCGCGG>2            TATCCCCTCGCC>1
+       CGTGGCCGCGGG>2            ATCCCCTCGCCA>1
+          GGCCGCGGGACG>2           CCCCTCGCCAGC>1
+           GCCGCGGGACGG>2          CCCCTCGCCAGC>1
+              GCGGGACGGTAC>2          CTCGCCAGCCGA>1
+                 GGACGGTACGGA>2        TCGCCAGCCGAT>1
+                   ACGGTACGGAGC>2       CGCCAGCCGATT>1
+                      GTACGGAGCCTA>2      CCAGCCGATTCT>1
+                        ACGGAGCCTATC>2     CAGCCGATTCTG>1
+                        ACGGAGCCTATC>2       GCCGATTCTGCC>1
+                        ACGGAGCCTATC>2        CCGATTCTGCCA>1
+                         CGGAGCCTATCC>2       CCGATTCTGCCA>1
+                          GGAGCCTATCCC>2         ATTCTGCCACCC>1
+                             GCCTATCCCCTC>2        TCTGCCACCCCG>1
+                              CCTATCCCCTCG>2       TCTGCCACCCCG>1
+                              CCTATCCCCTCG>2          GCCACCCCGACG>1
+                                TATCCCCTCGCC>2          CACCCCGACGCA>1
+                                 ATCCCCTCGCCA>2         CACCCCGACGCA>1
+                                  TCCCCTCGCCAG>2        CACCCCGACGCA>1
+                                  TCCCCTCGCCAG>2         ACCCCGACGCAC>1
+                                   CCCCTCGCCAGC>2         CCCCGACGCACT>1
+                                     CCTCGCCAGCCG>2          CGACGCACTGGC>1
+                                      CTCGCCAGCCGA>2            CGCACTGGCTAC>1
+                                       TCGCCAGCCGAT>2              ACTGGCTACGGA>1
+                                       TCGCCAGCCGAT>2                TGGCTACGGAGC>1
+                                         GCCAGCCGATTC>2                                                         GACGCACTGGCC>1
+                                           CAGCCGATTCTG>2                                                       GACGCACTGGCC>1
+                                           CAGCCGATTCTG>2                                                          GCACTGGCCGGG>1
+                                            AGCCGATTCTGC>2                                                          CACTGGCCGGGA>1
+                                                GATTCTGCCACC>2                                                      CACTGGCCGGGA>1
+                                                GATTCTGCCACC>2                                                          GGCCGGGAGCCG>1
+                                                 ATTCTGCCACCC>2                                                          GCCGGGAGCCGT>1
+                                                     TGCCACCCCGAC>2                                                      GCCGGGAGCCGT>1
+                                                     TGCCACCCCGAC>2                                                          GGAGCCGTCGCT>1
+                                                      GCCACCCCGACG>2                                                          GAGCCGTCGCTC>1
+                                                       CCACCCCGACGC>2                                                             CGTCGCTCGGGC>1
+                                                          CCCCGACGCACT>2                                                           GTCGCTCGGGCG>1
+                                                               ACGCACTGGCTA>2                                                          CTCGGGCGATGG>1
+                                                                CGCACTGGCTAC>2                                                          TCGGGCGATGGC>1
+                                                                     TGGCTACGGAGC>2                                                      CGGGCGATGGCC>1

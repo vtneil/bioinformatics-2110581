@@ -1,0 +1,54 @@
+(2_2_1)
+GCAGCCCGTC 0
+----CCCGTCTTCA 4
+--------TCTTCACGGT 8
+------------CACGGTTGGA 12
+----------------GTTGGAAGGG 16
+--------------------GAAGGGGGGG 20
+------------------------GGGGGGCCCG 24
+----------------------------GGCCCGGCAC 28
+--------------------------------CGGCACCGCG 32
+------------------------------------ACCGCGCGCG 36
+                                      CCCGGCACCG 0
+----------------------------------------CGCGCGGGTG 40
+                                      ----GCACCGCGCG 4
+--------------------------------------------CGGGTGATTC 44
+                                      --------CGCGCGCGGG 8
+------------------------------------------------TGATTCCTCC 48
+                                      ------------CGCGGGTGAT 12
+----------------------------------------------------TCCTCCGGGG 52
+                                      ----------------GGTGATTCCT 16
+--------------------------------------------------------CCGGGGGCCC 56
+                                      --------------------ATTCCTCCGG 20
+------------------------------------------------------------GGGCCCCCGG 60
+                                      ------------------------CTCCGGGGGC 24
+                                      ----------------------------GGGGGCCCCC 28
+                                      --------------------------------GCCCCCGGGC 32
+                                      ------------------------------------CCGGGCGCGG 36
+                                      ----------------------------------------GCGCGGGCGG 40
+                                      --------------------------------------------GGGCGGTGCG 44
+                                      ------------------------------------------------GGTGCGCCAG 48
+                                      ----------------------------------------------------CGCCAGCCGG 52
+                                      --------------------------------------------------------AGCCGGACAG 56
+                                      ------------------------------------------------------------GGACAGCGCG 60
+
+(2_2_1) GCAGCCCGTCTTCACGGTTGGAAGGGGGGGCCCGGCACCGCGCGCGGGTGATTCCTCCGGGGGCCCCCGG (len = 70)
+(2_2_2)                               CCCGGCACCGCGCGCGGGTGATTCCTCCGGGGGCCCCCGGGCGCGGGCGGTGCGCCAGCCGGACAGCGCG (len = 70)
+(total) GCAGCCCGTCTTCACGGTTGGAAGGGGGGGCCCGGCACCGCGCGCGGGTGATTCCTCCGGGGGCCCCCGGGCGCGGGCGGTGCGCCAGCCGGACAGCGCG (len = 100)
+
+read_001 at 56
+read_002 at 40
+read_003 at 36
+read_004 at 44
+read_005 at 48
+read_006 at 60
+read_007 at 28
+read_008 at 12
+read_009 at 0
+read_010 at 20
+read_011 at 4
+read_012 at 32
+read_013 at 24
+read_014 at 52
+read_015 at 8
+read_016 at 16
