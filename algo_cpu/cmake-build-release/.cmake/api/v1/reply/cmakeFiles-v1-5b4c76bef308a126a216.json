@@ -16,7 +16,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.26.4/CMakeSystem.cmake"
+			"path" : "cmake-build-release/CMakeFiles/3.26.4/CMakeSystem.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -270,7 +270,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.26.4/CMakeCCompiler.cmake"
+			"path" : "cmake-build-release/CMakeFiles/3.26.4/CMakeCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -509,7 +509,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.26.4/CMakeCXXCompiler.cmake"
+			"path" : "cmake-build-release/CMakeFiles/3.26.4/CMakeCXXCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -648,7 +648,7 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.26.4/CMakeCCompiler.cmake"
+			"path" : "cmake-build-release/CMakeFiles/3.26.4/CMakeCCompiler.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -747,13 +747,13 @@
 		},
 		{
 			"isGenerated" : true,
-			"path" : "cmake-build-debug/CMakeFiles/3.26.4/CMakeCXXCompiler.cmake"
+			"path" : "cmake-build-release/CMakeFiles/3.26.4/CMakeCXXCompiler.cmake"
 		}
 	],
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-debug",
+		"build" : "/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-release",
 		"source" : "/Users/vt/Desktop/git_target/bioinformatics/algo_cpu"
 	},
 	"version" : 
