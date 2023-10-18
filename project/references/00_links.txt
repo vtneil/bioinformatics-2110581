@@ -1,0 +1,2 @@
+Bioinformatics https://www.langmead-lab.org/teaching.html
+qRAM Qiskit https://quantumcomputinguk.org/tutorials/implementing-qram-in-qiskit-with-code
