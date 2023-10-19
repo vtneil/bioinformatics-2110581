@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "bio_cpu.h"
 
-#define MAX_STR_LEN 4096
+#define MAX_STR_LEN 4000000000ull
 
 int match, mismatch;
 
