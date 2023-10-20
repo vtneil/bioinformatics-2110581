@@ -5,162 +5,52 @@
 #include <string.h>
 #include <stdarg.h>
 
+#ifdef _OPENMP
+#include <omp.h>
+#endif
+
 #define DEFAULT_GAP_PENALTY (-2)
 
-typedef int (*score_func_t)(char, char);
+typedef double score_t;
 
-int default_comparator(char a, char b) { return (a == b) ? 1 : -1; }
+typedef score_t (*score_func_t)(char, char);
 
-int max(int a, int b) { return (a > b) ? a : b; }
+__attribute__((always_inline)) extern score_t default_comparator(char a, char b);
 
-int find_max(size_t argc, ...) {
-    int max, current;
+extern score_t max(score_t a, score_t b);
 
-    va_list args;
-    va_start(args, argc);
+extern int find_max(size_t argc, ...);
 
-    max = va_arg(args, int);
+extern void **new_matrix(size_t row, size_t col);
 
-    for (size_t i = 1; i < argc; ++i) {
-        current = va_arg(args, int);
-        if (current > max)
-            max = current;
-    }
+extern char *new_string(size_t len);
 
-    va_end(args);
-    return max;
-}
+void **to_diagonal(void **F, size_t row, size_t col);
 
-int **malloc_matrix(size_t len_a, size_t len_b) {
-    int **F;
-    F = (int **) malloc(len_a * sizeof(int *));
-    if (F == NULL)
-        exit(1);
+void **from_diagonal(void ***F, void **diag, size_t row, size_t col);
 
-    for (size_t i = 0; i < len_a; ++i) {
-        F[i] = (int *) calloc(len_b, sizeof(int));
-        if (F[i] == NULL) {
-            for (size_t j = 0; j < i; ++j)
-                free(F[j]);
-            free(F);
-            exit(1);
-        }
-    }
+extern void nw_generate(void ***F,
+                        const char *seq_a, const char *seq_b,
+                        size_t len_a, size_t len_b,
+                        score_t gap_penalty);
 
-    return F;
-}
+extern void nw_backtrack(char **out_a, char **out_b, char **out_match,
+                         size_t *aligned_len, score_t *score,
+                         void **F,
+                         const char *seq_a, const char *seq_b,
+                         size_t len_a, size_t len_b,
+                         score_t gap_penalty);
 
-void free_matrix(int **F, size_t len_a, __attribute__((unused)) size_t len_b) {
-    for (size_t i = 0; i < len_a; ++i)
-        free(F[i]);
-    free(F);
-}
+extern void sw_generate(void ***F,
+                        const char *seq_a, const char *seq_b,
+                        size_t len_a, size_t len_b,
+                        score_t gap_penalty);
 
-char *malloc_string(size_t len) {
-    char *str;
-    str = (char *) calloc(len, sizeof(char));
-    if (str == NULL)
-        exit(1);
-
-    return str;
-}
-
-void free_string(char *str, __attribute__((unused)) size_t len) {
-    free(str);
-}
-
-void nw_generate(int ***F,
-                 const char *seq_a, const char *seq_b,
-                 size_t len_a, size_t len_b,
-                 score_func_t score_func, int gap_penalty) {
-
-    *F = malloc_matrix(len_a + 1, len_b + 1);
-
-    for (size_t i = 0; i < len_a + 1; ++i)
-        (*F)[i][0] = gap_penalty * (int) i;
-
-    for (size_t j = 0; j < len_b + 1; ++j)
-        (*F)[0][j] = gap_penalty * (int) j;
-
-    for (size_t i = 1; i < len_a + 1; ++i) {
-        for (size_t j = 1; j < len_b + 1; ++j) {
-            (*F)[i][j] = max((*F)[i - 1][j - 1] + score_func(seq_a[i - 1], seq_b[j - 1]),
-                             max((*F)[i - 1][j] + gap_penalty,
-                                 (*F)[i][j - 1] + gap_penalty));
-        }
-    }
-}
-
-void nw_backtrack(char **out_a, char **out_b, char **out_match,
-                  size_t *aligned_len, int *score,
-                  int **F,
-                  const char *seq_a, const char *seq_b,
-                  size_t len_a, size_t len_b,
-                  score_func_t score_func, int gap_penalty) {
-
-    size_t max_len = len_a + len_b;
-    *score = 0;
-
-    char *tmp_a = malloc_string(max_len);
-    char *tmp_b = malloc_string(max_len);
-
-    size_t i = len_a;
-    size_t j = len_b;
-    size_t idx = 0;
-
-    int ms;
-    while (i > 0 && j > 0) {
-        ms = score_func(seq_a[i - 1], seq_b[j - 1]);
-        if (F[i][j] == F[i][j - 1] + gap_penalty) {
-            tmp_a[idx] = '-';
-            tmp_b[idx] = seq_b[j - 1];
-            *score += gap_penalty;
-            --j;
-        } else if (F[i][j] == F[i - 1][j] + gap_penalty) {
-            tmp_a[idx] = seq_a[i - 1];
-            tmp_b[idx] = '-';
-            *score += gap_penalty;
-            --i;
-        } else if (F[i][j] == F[i - 1][j - 1] + ms) {
-            tmp_a[idx] = seq_a[i - 1];
-            tmp_b[idx] = seq_b[j - 1];
-            *score += ms;
-            --i;
-            --j;
-        }
-        ++idx;
-    }
-
-    while (j > 0) {
-        tmp_a[idx] = '-';
-        tmp_b[idx] = seq_b[j - 1];
-        *score += gap_penalty;
-        --j;
-        ++idx;
-    }
-
-    while (i > 0) {
-        tmp_a[idx] = seq_a[i - 1];
-        tmp_b[idx] = '-';
-        *score += gap_penalty;
-        --i;
-        ++idx;
-    }
-
-    *out_a = malloc_string(idx);
-    *out_b = malloc_string(idx);
-    *out_match = malloc_string(idx);
-
-    for (size_t k = 0; k < idx; ++k) {
-        (*out_a)[k] = tmp_a[idx - k - 1];
-        (*out_b)[k] = tmp_b[idx - k - 1];
-        (*out_match)[k] = ((*out_a)[k] == (*out_b)[k]) ? '|' : ' ';
-    }
-
-    *aligned_len = idx;
-
-    free_string(tmp_a, 0);
-    free_string(tmp_b, 0);
-}
+extern void sw_backtrack(char **out_a, char **out_b, char **out_match,
+                         size_t *aligned_len, score_t *score,
+                         void **F,
+                         const char *seq_a, const char *seq_b,
+                         size_t len_a, size_t len_b,
+                         score_t gap_penalty);
 
 #endif

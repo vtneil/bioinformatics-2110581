@@ -41,68 +41,122 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target algo_cpu
+# Object build statements for EXECUTABLE target algo-nw
 
 
 #############################################
-# Order-only phony target for algo_cpu
+# Order-only phony target for algo-nw
 
-build cmake_object_order_depends_target_algo_cpu: phony || CMakeFiles/algo_cpu.dir
+build cmake_object_order_depends_target_algo-nw: phony || CMakeFiles/algo-nw.dir
 
-build CMakeFiles/algo_cpu.dir/main.c.o: C_COMPILER__algo_cpu_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/main.c || cmake_object_order_depends_target_algo_cpu
-  DEP_FILE = CMakeFiles/algo_cpu.dir/main.c.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
+build CMakeFiles/algo-nw.dir/include/bio_cpu.c.o: C_COMPILER__algo-nw_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include/bio_cpu.c || cmake_object_order_depends_target_algo-nw
+  DEP_FILE = CMakeFiles/algo-nw.dir/include/bio_cpu.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O2
   INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
-  OBJECT_DIR = CMakeFiles/algo_cpu.dir
-  OBJECT_FILE_DIR = CMakeFiles/algo_cpu.dir
+  OBJECT_DIR = CMakeFiles/algo-nw.dir
+  OBJECT_FILE_DIR = CMakeFiles/algo-nw.dir/include
+
+build CMakeFiles/algo-nw.dir/main_nw.c.o: C_COMPILER__algo-nw_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/main_nw.c || cmake_object_order_depends_target_algo-nw
+  DEP_FILE = CMakeFiles/algo-nw.dir/main_nw.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O2
+  INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
+  OBJECT_DIR = CMakeFiles/algo-nw.dir
+  OBJECT_FILE_DIR = CMakeFiles/algo-nw.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target algo_cpu
+# Link build statements for EXECUTABLE target algo-nw
 
 
 #############################################
-# Link the executable algo_cpu
+# Link the executable algo-nw
 
-build algo_cpu: C_EXECUTABLE_LINKER__algo_cpu_Debug CMakeFiles/algo_cpu.dir/main.c.o
+build algo-nw: C_EXECUTABLE_LINKER__algo-nw_Debug CMakeFiles/algo-nw.dir/include/bio_cpu.c.o CMakeFiles/algo-nw.dir/main_nw.c.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk
-  OBJECT_DIR = CMakeFiles/algo_cpu.dir
+  OBJECT_DIR = CMakeFiles/algo-nw.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = algo_cpu
-  TARGET_PDB = algo_cpu.dbg
+  TARGET_FILE = algo-nw
+  TARGET_PDB = algo-nw.dbg
 
 # =============================================================================
-# Object build statements for EXECUTABLE target test_nw
+# Object build statements for EXECUTABLE target algo-sw
 
 
 #############################################
-# Order-only phony target for test_nw
+# Order-only phony target for algo-sw
 
-build cmake_object_order_depends_target_test_nw: phony || CMakeFiles/test_nw.dir
+build cmake_object_order_depends_target_algo-sw: phony || CMakeFiles/algo-sw.dir
 
-build CMakeFiles/test_nw.dir/test/test_nw.c.o: C_COMPILER__test_nw_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/test/test_nw.c || cmake_object_order_depends_target_test_nw
-  DEP_FILE = CMakeFiles/test_nw.dir/test/test_nw.c.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
+build CMakeFiles/algo-sw.dir/include/bio_cpu.c.o: C_COMPILER__algo-sw_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include/bio_cpu.c || cmake_object_order_depends_target_algo-sw
+  DEP_FILE = CMakeFiles/algo-sw.dir/include/bio_cpu.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O2
   INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
-  OBJECT_DIR = CMakeFiles/test_nw.dir
-  OBJECT_FILE_DIR = CMakeFiles/test_nw.dir/test
+  OBJECT_DIR = CMakeFiles/algo-sw.dir
+  OBJECT_FILE_DIR = CMakeFiles/algo-sw.dir/include
+
+build CMakeFiles/algo-sw.dir/main_sw.c.o: C_COMPILER__algo-sw_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/main_sw.c || cmake_object_order_depends_target_algo-sw
+  DEP_FILE = CMakeFiles/algo-sw.dir/main_sw.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O2
+  INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
+  OBJECT_DIR = CMakeFiles/algo-sw.dir
+  OBJECT_FILE_DIR = CMakeFiles/algo-sw.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target test_nw
+# Link build statements for EXECUTABLE target algo-sw
 
 
 #############################################
-# Link the executable test_nw
+# Link the executable algo-sw
 
-build test_nw: C_EXECUTABLE_LINKER__test_nw_Debug CMakeFiles/test_nw.dir/test/test_nw.c.o
+build algo-sw: C_EXECUTABLE_LINKER__algo-sw_Debug CMakeFiles/algo-sw.dir/include/bio_cpu.c.o CMakeFiles/algo-sw.dir/main_sw.c.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk
-  OBJECT_DIR = CMakeFiles/test_nw.dir
+  OBJECT_DIR = CMakeFiles/algo-sw.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = test_nw
-  TARGET_PDB = test_nw.dbg
+  TARGET_FILE = algo-sw
+  TARGET_PDB = algo-sw.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target algo-nw-openmp
+
+
+#############################################
+# Order-only phony target for algo-nw-openmp
+
+build cmake_object_order_depends_target_algo-nw-openmp: phony || CMakeFiles/algo-nw-openmp.dir
+
+build CMakeFiles/algo-nw-openmp.dir/include/bio_cpu.c.o: C_COMPILER__algo-nw-openmp_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include/bio_cpu.c || cmake_object_order_depends_target_algo-nw-openmp
+  DEP_FILE = CMakeFiles/algo-nw-openmp.dir/include/bio_cpu.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -fopenmp -v
+  INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
+  OBJECT_DIR = CMakeFiles/algo-nw-openmp.dir
+  OBJECT_FILE_DIR = CMakeFiles/algo-nw-openmp.dir/include
+
+build CMakeFiles/algo-nw-openmp.dir/main_nw.c.o: C_COMPILER__algo-nw-openmp_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/main_nw.c || cmake_object_order_depends_target_algo-nw-openmp
+  DEP_FILE = CMakeFiles/algo-nw-openmp.dir/main_nw.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -fopenmp -v
+  INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
+  OBJECT_DIR = CMakeFiles/algo-nw-openmp.dir
+  OBJECT_FILE_DIR = CMakeFiles/algo-nw-openmp.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target algo-nw-openmp
+
+
+#############################################
+# Link the executable algo-nw-openmp
+
+build algo-nw-openmp: C_EXECUTABLE_LINKER__algo-nw-openmp_Debug CMakeFiles/algo-nw-openmp.dir/include/bio_cpu.c.o CMakeFiles/algo-nw-openmp.dir/main_nw.c.o
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk
+  LINK_LIBRARIES = -fopenmp  -v
+  OBJECT_DIR = CMakeFiles/algo-nw-openmp.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = algo-nw-openmp
+  TARGET_PDB = algo-nw-openmp.dbg
 
 
 #############################################
@@ -138,7 +192,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-debug
 
-build all: phony algo_cpu test_nw
+build all: phony algo-nw algo-sw algo-nw-openmp
 
 # =============================================================================
 # Built-in targets
@@ -147,14 +201,14 @@ build all: phony algo_cpu test_nw
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/AppleClang-C.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/AppleClang-CXX.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/Clang.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-AppleClang-C.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-AppleClang-CXX.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-C.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-CXX.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin-Initialize.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/UnixPaths.cmake /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/Clang-C.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/Clang-CXX.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/Clang.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-C.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-CXX.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin-Initialize.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/UnixPaths.cmake /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/AppleClang-C.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/AppleClang-CXX.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/Clang.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-AppleClang-C.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-AppleClang-CXX.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-C.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-CXX.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin-Initialize.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/UnixPaths.cmake /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake: phony
+build /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/Clang-C.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/Clang-CXX.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/Clang.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-C.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-CXX.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin-Initialize.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin.cmake /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/UnixPaths.cmake /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake: phony
 
 
 #############################################

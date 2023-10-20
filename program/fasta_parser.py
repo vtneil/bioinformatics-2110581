@@ -4,8 +4,11 @@ from itertools import groupby
 
 @dataclass
 class FastaSequence:
-    name: str = None
-    seq: str = None
+    name: str = 'FASTA Sequence'
+    seq: str = ''
+
+    def __len__(self):
+        return len(self.seq)
 
 
 def fasta_iter(filename: str):

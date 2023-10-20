@@ -1,4 +1,5 @@
-/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-release/CMakeFiles/algo_cpu.dir
-/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-release/CMakeFiles/test_nw.dir
+/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-release/CMakeFiles/algo-nw.dir
+/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-release/CMakeFiles/algo-sw.dir
+/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-release/CMakeFiles/algo-nw-openmp.dir
 /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-release/CMakeFiles/edit_cache.dir
 /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-release/CMakeFiles/rebuild_cache.dir
