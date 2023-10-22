@@ -1,10 +1,31 @@
-/Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Users/vt/Applications/CLion.app/Contents/bin/ninja/mac/ninja -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -G Ninja -S /Users/vt/Desktop/git_target/bioinformatics/algo_gpu -B /Users/vt/Desktop/git_target/bioinformatics/algo_gpu/cmake-build-debug
-CMake Error at /Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeDetermineCUDACompiler.cmake:180 (message):
-  Failed to find nvcc.
+C:\Users\vivat\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\vivat\Desktop\clion\bioinformatics-2110581\algo_gpu -B C:\Users\vivat\Desktop\clion\bioinformatics-2110581\algo_gpu\cmake-build-debug
+CMake Error at C:/Users/vivat/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:751 (message):
+  Compiling the CUDA compiler identification source file
+  "CMakeCUDACompilerId.cu" failed.
 
-  Compiler requires the CUDA toolkit.  Please set the CUDAToolkit_ROOT
-  variable.
+  Compiler: C:/Program Files/NVIDIA GPU Computing
+  Toolkit/CUDA/v12.3/bin/nvcc.exe
+
+  Build flags:
+
+  Id flags: --keep;--keep-dir;tmp -v
+
+
+
+  The output was:
+
+  1
+
+  nvcc fatal : Cannot find compiler 'cl.exe' in PATH
+
+
+
+
+
 Call Stack (most recent call first):
+  C:/Users/vivat/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)
+  C:/Users/vivat/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeDetermineCompilerId.cmake:53 (__determine_compiler_id_test)
+  C:/Users/vivat/AppData/Local/Programs/CLion/bin/cmake/win/x64/share/cmake-3.26/Modules/CMakeDetermineCUDACompiler.cmake:307 (CMAKE_DETERMINE_COMPILER_ID)
   CMakeLists.txt:2 (project)
 
 
