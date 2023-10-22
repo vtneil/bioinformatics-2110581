@@ -10,7 +10,7 @@ def generate_string(length: int, characters):
 
 if __name__ == '__main__':
     SET = 2
-    MAX_STRING_LENGTH = 10_240
+    MAX_STRING_LENGTH = 51_200
     STEP = 512
     CHARACTER_POOL = 'ATCG'
 
@@ -24,5 +24,6 @@ if __name__ == '__main__':
             f.write(f'>{SEQ_NAME}')
             f.write('\n')
             f.write(out)
+            f.flush()
 
     print("Generate Done")

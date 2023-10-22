@@ -1,6 +1,6 @@
 #include "bio_cpu.h"
 
-extern score_t match, mismatch;
+extern score_t match, mismatch, gap_penalty;
 
 __attribute__((always_inline)) score_t default_comparator(char a, char b) { return (a == b) ? match : mismatch; }
 
@@ -44,7 +44,10 @@ void **to_diagonal(void **F, size_t row, size_t col) {
 
     void **diag = new_matrix(n_row, n_col);
 
-    // Anti-diagonal access
+    // Anti-diagonal access and parallelize (comb) when possible
+#ifdef _OPENMP
+#pragma omp parallel for collapse(2) default(none) shared(row, col, n_col, F, diag)
+#endif
     for (size_t i = 0; i < row; ++i) {
         for (size_t j = 0; j < col; ++j) {
             ((score_t (*)[n_col]) diag)[i + j][j] = ((score_t (*)[col]) F)[i][j];
@@ -57,7 +60,10 @@ void **to_diagonal(void **F, size_t row, size_t col) {
 void **from_diagonal(void ***F, void **diag, size_t row, size_t col) {
     size_t n_col = ((row < col) ? row : col);
 
-    // Anti-diagonal access
+    // Anti-diagonal access and parallelize (comb) when possible
+#ifdef _OPENMP
+#pragma omp parallel for collapse(2) default(none) shared(row, col, n_col, F, diag)
+#endif
     for (size_t i = 0; i < row; ++i) {
         for (size_t j = 0; j < col; ++j) {
             ((score_t (*)[col]) (*F))[i][j] = ((score_t (*)[n_col]) diag)[i + j][j];
@@ -68,106 +74,223 @@ void **from_diagonal(void ***F, void **diag, size_t row, size_t col) {
 }
 
 void nw_generate(void ***F,
-                 const char *seq_a, const char *seq_b,
-                 size_t len_a, size_t len_b,
-                 score_t gap_penalty) {
+                 sequence_t *seq_a, sequence_t *seq_b) {
 
-    size_t len_a_new = len_a + 1;
-    size_t len_b_new = len_b + 1;
+    impl_nw_generate_1(F, seq_a, seq_b);
+//    impl_nw_generate_2(F, seq_a, seq_b);
+//    impl_nw_generate_3(F, seq_a, seq_b);
 
+}
+
+void impl_nw_generate_1(void ***F,
+                        sequence_t *seq_a, sequence_t *seq_b) {
+
+    size_t len_a_new = seq_a->len + 1;
+    size_t len_b_new = seq_b->len + 1;
     *F = new_matrix(len_a_new, len_b_new);
-
-#ifndef _OPENMP
     score_t (*pF)[len_b_new] = (score_t (*)[len_b_new]) (*F);
 
-    for (size_t i = 1; i < len_a_new; ++i)
-        pF[i][0] = gap_penalty * (score_t) i;
+#ifdef _OPENMP
+#pragma omp parallel default(none) shared(pF, gap_penalty, len_a_new, len_b_new)
+    {
+#endif
 
-    for (size_t j = 1; j < len_b_new; ++j)
-        pF[0][j] = gap_penalty * (score_t) j;
+        // Initialize
+#ifdef _OPENMP
+#pragma omp for simd nowait schedule(static)
+#endif
+        for (size_t i = 1; i < len_a_new; ++i)
+            pF[i][0] = gap_penalty * (score_t) i;
 
-    for (size_t i = 1; i < len_a_new; ++i) {
-        for (size_t j = 1; j < len_b_new; ++j) {
-            score_t _match = pF[i - 1][j - 1] +
-                             default_comparator(seq_a[i - 1], seq_b[j - 1]);
-            score_t _delete = pF[i - 1][j] + gap_penalty;
-            score_t _insert = pF[i][j - 1] + gap_penalty;
-            pF[i][j] = max(_match, max(_delete, _insert));
-        }
+        // Initialize
+#ifdef _OPENMP
+#pragma omp for simd nowait schedule(static)
+#endif
+        for (size_t j = 1; j < len_b_new; ++j)
+            pF[0][j] = gap_penalty * (score_t) j;
+
+#ifdef _OPENMP
     }
+#endif
+
+    // Block calculation starts at i=1, j=1.
+    size_t i_begin = 1;
+    size_t j_begin = 1;
+    block_t init_block = {F, len_a_new, len_b_new,
+                          i_begin, j_begin,
+                          len_a_new, len_b_new};
+    impl_nw_generate_1_block(&init_block, seq_a, seq_b);
+}
+
+void impl_nw_generate_1_block(block_t *block,
+                                     sequence_t *seq_a, sequence_t *seq_b) {
+    size_t hx = block->i_end - block->i_begin;
+    size_t wx = block->j_end - block->j_begin;
+
+    if (hx * wx >= MAX_BLOCK_SIZE) {
+        size_t new_hx = hx / 2;
+        size_t new_wx = wx / 2;
+
+        // partitioning blocks 0-3: top-left, top-right, bottom-left, bottom-right
+        block_t b = {0};
+
+        b.ptr = block->ptr;
+        b.full_w = block->full_w;
+        b.full_h = block->full_h;
+
+        // block 0
+        b.i_begin = block->i_begin;
+        b.j_begin = block->j_begin;
+        b.i_end = block->i_begin + new_hx;
+        b.j_end = block->j_begin + new_wx;
+        impl_nw_generate_1_block(&b, seq_a, seq_b);
+
+        // block 1
+        b.i_begin = block->i_begin;
+        b.j_begin = block->j_begin + new_wx;
+        b.i_end = block->i_begin + new_hx;
+        b.j_end = block->j_end;
+        impl_nw_generate_1_block(&b, seq_a, seq_b);
+
+        // block 2
+        b.i_begin = block->i_begin + new_hx;
+        b.j_begin = block->j_begin;
+        b.i_end = block->i_end;
+        b.j_end = block->j_begin + new_wx;
+        impl_nw_generate_1_block(&b, seq_a, seq_b);
+
+        // block 3
+        b.i_begin = block->i_begin + new_hx;
+        b.j_begin = block->j_begin + new_wx;
+        b.i_end = block->i_end;
+        b.j_end = block->j_end;
+        impl_nw_generate_1_block(&b, seq_a, seq_b);
+
+    } else {
+        score_t (*pF)[block->full_w] = (score_t (*)[block->full_w]) (*(block->ptr));
+
+#ifndef _OPENMP
+        for (size_t i = block->i_begin; i < block->i_end; ++i) {
+            for (size_t j = block->j_begin; j < block->j_end; ++j) {
+                score_t _match = pF[i - 1][j - 1] +
+                                 default_comparator(seq_a->data[i - 1], seq_b->data[j - 1]);
+                score_t _delete = pF[i - 1][j] + gap_penalty;
+                score_t _insert = pF[i][j - 1] + gap_penalty;
+                pF[i][j] = max(_match, max(_delete, _insert));
+            }
+        }
 #else
+#pragma omp parallel default(none) shared(pF, block, hx, wx, gap_penalty, seq_a, seq_b)
+        {
+            for (size_t i = 0; i < (hx + wx - 1); ++i) {
+                size_t j_start = i < wx ? 0 : i - wx + 1;
+                size_t j_end = i < hx ? i + 1 : hx;
+
+#pragma omp for simd schedule(static)
+                for (size_t j = j_start; j < j_end; ++j) {
+                    size_t diag_i = block->i_begin + (j);
+                    size_t diag_j = block->j_begin + (i - j);
+
+                    if (diag_i == 0 || diag_j == 0) continue;
+
+                    score_t _match = (pF)[diag_i - 1][diag_j - 1] +
+                                     default_comparator(seq_a->data[diag_i - 1], seq_b->data[diag_j - 1]);
+                    score_t _delete = (pF)[diag_i - 1][diag_j] + gap_penalty;
+                    score_t _insert = (pF)[diag_i][diag_j - 1] + gap_penalty;
+                    (pF)[diag_i][diag_j] = max(_match, max(_delete, _insert));
+                }
+            }
+        }
+#endif
+    }
+}
+
+void impl_nw_generate_2(void ***F,
+                        sequence_t *seq_a, sequence_t *seq_b) {
+    size_t len_a_new = seq_a->len + 1;
+    size_t len_b_new = seq_b->len + 1;
     size_t row_diag = len_a_new + len_b_new - 1;
     size_t col_diag = len_a_new < len_b_new ? len_a_new : len_b_new;
+
     void **diag = new_matrix(row_diag, col_diag);
     score_t (*p_diag)[col_diag] = (score_t (*)[col_diag]) diag;
 
+#ifdef _OPENMP
 #pragma omp parallel default(none) \
     shared(p_diag, gap_penalty, len_a_new, len_b_new, row_diag, col_diag, seq_a, seq_b)
     {
+#endif
 
         // Initialize
+#ifdef _OPENMP
 #pragma omp for simd nowait schedule(static)
+#endif
         for (size_t i = 1; i < len_a_new; ++i)
             p_diag[i][0] = gap_penalty * (score_t) i;
 
         // Initialize
+#ifdef _OPENMP
 #pragma omp for simd nowait schedule(static)
+#endif
         for (size_t j = 1; j < len_b_new; ++j)
             p_diag[j][j] = gap_penalty * (score_t) j;
 
         // Wavefront diagonal
         for (size_t i = 2; i < row_diag; ++i) {
-            size_t max_j = (i < col_diag) ? i : col_diag;
-#pragma omp for simd schedule(guided)
+            size_t max_j = (i < col_diag) ?
+                           i :
+                           col_diag;
+#ifdef _OPENMP
+#pragma omp for simd schedule(static)
+#endif
             for (size_t j = 1; j < max_j; ++j) {
                 score_t _match = p_diag[i - 2][j - 1] +
-                             default_comparator(seq_a[i - j - 1], seq_b[j - 1]);
+                                 default_comparator(seq_a->data[i - j - 1], seq_b->data[j - 1]);
                 score_t _delete = p_diag[i - 1][j] + gap_penalty;
                 score_t _insert = p_diag[i - 1][j - 1] + gap_penalty;
                 p_diag[i][j] = max(_match, max(_delete, _insert));
             }
         }
+#ifdef _OPENMP
     }
+#endif
 
+    *F = new_matrix(len_a_new, len_b_new);
     from_diagonal(F, diag, len_a_new, len_b_new);
     free(diag);
-
-#endif
 }
 
 void nw_backtrack(char **out_a, char **out_b, char **out_match,
                   size_t *aligned_len, score_t *score,
                   void **F,
-                  const char *seq_a, const char *seq_b,
-                  size_t len_a, size_t len_b,
-                  score_t gap_penalty) {
+                  sequence_t *seq_a, sequence_t *seq_b) {
 
-    score_t (*pF)[len_b + 1] = (score_t (*)[len_b + 1]) F;
-    size_t max_len = len_a + len_b;
+    score_t (*pF)[seq_b->len + 1] = (score_t (*)[seq_b->len + 1]) F;
+    size_t max_len = seq_a->len + seq_b->len;
     *score = 0;
 
     char *tmp_a = new_string(max_len);
     char *tmp_b = new_string(max_len);
 
-    size_t i = len_a;
-    size_t j = len_b;
+    size_t i = seq_a->len;
+    size_t j = seq_b->len;
     size_t idx = 0;
 
     while (i > 0 && j > 0) {
-        score_t ms = default_comparator(seq_a[i - 1], seq_b[j - 1]);
+        score_t ms = default_comparator(seq_a->data[i - 1], seq_b->data[j - 1]);
         if (pF[i][j] == pF[i][j - 1] + gap_penalty) {
             tmp_a[idx] = '-';
-            tmp_b[idx] = seq_b[j - 1];
+            tmp_b[idx] = seq_b->data[j - 1];
             *score += gap_penalty;
             --j;
         } else if (pF[i][j] == pF[i - 1][j] + gap_penalty) {
-            tmp_a[idx] = seq_a[i - 1];
+            tmp_a[idx] = seq_a->data[i - 1];
             tmp_b[idx] = '-';
             *score += gap_penalty;
             --i;
         } else if (pF[i][j] == pF[i - 1][j - 1] + ms) {
-            tmp_a[idx] = seq_a[i - 1];
-            tmp_b[idx] = seq_b[j - 1];
+            tmp_a[idx] = seq_a->data[i - 1];
+            tmp_b[idx] = seq_b->data[j - 1];
             *score += ms;
             --i;
             --j;
@@ -177,14 +300,14 @@ void nw_backtrack(char **out_a, char **out_b, char **out_match,
 
     while (j > 0) {
         tmp_a[idx] = '-';
-        tmp_b[idx] = seq_b[j - 1];
+        tmp_b[idx] = seq_b->data[j - 1];
         *score += gap_penalty;
         --j;
         ++idx;
     }
 
     while (i > 0) {
-        tmp_a[idx] = seq_a[i - 1];
+        tmp_a[idx] = seq_a->data[i - 1];
         tmp_b[idx] = '-';
         *score += gap_penalty;
         --i;

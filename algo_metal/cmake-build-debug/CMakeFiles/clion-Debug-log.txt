@@ -1,4 +1,0 @@
-/Users/vt/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Users/vt/Applications/CLion.app/Contents/bin/ninja/mac/ninja -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -G Ninja -S /Users/vt/Desktop/git_target/bioinformatics/algo_metal -B /Users/vt/Desktop/git_target/bioinformatics/algo_metal/cmake-build-debug
--- Configuring done (0.0s)
--- Generating done (0.0s)
--- Build files have been written to: /Users/vt/Desktop/git_target/bioinformatics/algo_metal/cmake-build-debug
