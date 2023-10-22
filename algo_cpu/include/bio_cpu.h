@@ -11,14 +11,13 @@
 
 #endif
 
-#define DEFAULT_GAP_PENALTY  (-2)
-#define MAX_BLOCK_WIDTH      1024ULL
-//#define MAX_BLOCK_WIDTH      10ULL
+#define CEIL_DIV(A, B)      (((A) + (B) - 1) / (B))
+#define MAX_BLOCK_WIDTH      8192ULL
+//#define MAX_BLOCK_WIDTH      8ULL  // Test
 #define MAX_BLOCK_SIZE       (MAX_BLOCK_WIDTH * MAX_BLOCK_WIDTH)
+//#define DIAGONAL_ARRAY_ACCESS
 
 typedef double score_t;
-
-typedef score_t (*score_func_t)(char, char);
 
 typedef struct {
     void ***ptr;
@@ -49,31 +48,20 @@ extern void **to_diagonal(void **F, size_t row, size_t col);
 
 extern void **from_diagonal(void ***F, void **diag, size_t row, size_t col);
 
-extern void nw_generate(void ***F,
-                        sequence_t *seq_a, sequence_t *seq_b);
+extern void nw_generate();
 
-extern void impl_nw_generate_1(void ***F,
-                               sequence_t *seq_a, sequence_t *seq_b);
+extern void impl_nw_generate_1();
 
-extern void impl_nw_generate_1_block(block_t *block,
-                                     sequence_t *seq_a, sequence_t *seq_b);
+extern void impl_nw_generate_1_block_recur(block_t *block,
+                                           int split_block);
 
-extern void impl_nw_generate_2(void ***F,
-                               sequence_t *seq_a, sequence_t *seq_b);
+extern void impl_nw_generate_1_block_iter(block_t *block,
+                                          int split_block);
 
-/*
-extern void impl_nw_generate_3(void ***F,
-                               sequence_t *seq_a, sequence_t *seq_b);
-
-extern void impl_nw_generate_3_block(block_t *block,
-                                     sequence_t *seq_a, sequence_t *seq_b);
-
- */
+extern void impl_nw_generate_2();
 
 extern void nw_backtrack(char **out_a, char **out_b, char **out_match,
-                         size_t *aligned_len, score_t *score,
-                         void **F,
-                         sequence_t *seq_a, sequence_t *seq_b);
+                         size_t *aligned_len, score_t *score);
 
 extern void sw_generate(void ***F,
                         const char *seq_a, const char *seq_b,

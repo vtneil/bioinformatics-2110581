@@ -9,21 +9,22 @@ def generate_string(length: int, characters):
 
 
 if __name__ == '__main__':
-    SET = 2
-    MAX_STRING_LENGTH = 51_200
-    STEP = 512
+    SETS = [1, 2]
+    MAX_STRING_LENGTH = 25_600
+    STEP = 1024
     CHARACTER_POOL = 'ATCG'
 
-    for i in range(STEP, MAX_STRING_LENGTH + 1, STEP):
-        SEQ_NAME = f'Random DNA {SET} Length {i}'
-        FILENAME = f'seq/set{SET}/random_dna_{i}.fasta'
+    for _set in SETS:
+        for i in range(STEP, MAX_STRING_LENGTH + 1, STEP):
+            SEQ_NAME = f'Random DNA {_set} Length {i}'
+            FILENAME = f'seq/set{_set}/random_dna_{i}.fasta'
 
-        out = generate_string(i, CHARACTER_POOL)
+            out = generate_string(i, CHARACTER_POOL)
 
-        with open(FILENAME, mode='w') as f:
-            f.write(f'>{SEQ_NAME}')
-            f.write('\n')
-            f.write(out)
-            f.flush()
+            with open(FILENAME, mode='w') as f:
+                f.write(f'>{SEQ_NAME}')
+                f.write('\n')
+                f.write(out)
+                f.flush()
 
     print("Generate Done")
