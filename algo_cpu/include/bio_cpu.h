@@ -12,7 +12,6 @@
 #endif
 
 #define DIV_MOD(T, Q, R, A, B)      T Q = (A) / (B); T R = (A) % (B);
-#define CEIL_DIV(A, B)              (((A) + (B) - 1) / (B))
 #define MAX_BLOCK_WIDTH             16384ULL
 //#define MAX_BLOCK_WIDTH             5ULL  // Test
 #define MAX_BLOCK_SIZE              (MAX_BLOCK_WIDTH * MAX_BLOCK_WIDTH)
@@ -45,24 +44,20 @@ extern void **new_matrix(size_t row, size_t col);
 
 extern char *new_string(size_t len);
 
-extern void **to_diagonal(void **F, size_t row, size_t col);
-
-extern void **from_diagonal(void ***F, void **diag, size_t row, size_t col);
-
 extern void nw_generate(void);
 
 extern void impl_nw_generate_1(void);
 
-extern void impl_nw_generate_1_block_recur(block_t *restrict block,
+extern void impl_nw_generate_1_block_recur(block_t *block,
                                            int is_subdivide);
 
-extern void impl_nw_generate_1_block_iter(block_t *restrict block);
+extern void impl_nw_generate_1_block_iter(block_t *block);
 
-extern void nw_backtrack(char *restrict *restrict out_a,
-                         char *restrict *restrict out_b,
-                         char *restrict *restrict out_match,
-                         size_t *restrict aligned_len,
-                         score_t *restrict score);
+extern void nw_backtrack(char **out_a,
+                         char **out_b,
+                         char **out_match,
+                         size_t *aligned_len,
+                         score_t *score);
 
 extern void sw_generate(void ***F,
                         const char *seq_a, const char *seq_b,

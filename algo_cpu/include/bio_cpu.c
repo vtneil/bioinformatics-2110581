@@ -41,41 +41,6 @@ char *new_string(size_t len) {
     return str;
 }
 
-void **to_diagonal(void **F, size_t row, size_t col) {
-    size_t n_row = row + col - 1;
-    size_t n_col = ((row < col) ? row : col);
-
-    void **diag = new_matrix(n_row, n_col);
-
-    // Anti-diagonal access and parallelize (comb) when possible
-#ifdef _OPENMP
-#pragma omp parallel for collapse(2) default(none) shared(row, col, n_col, F, diag)
-#endif
-    for (size_t i = 0; i < row; ++i) {
-        for (size_t j = 0; j < col; ++j) {
-            ((score_t (*)[n_col]) diag)[i + j][j] = ((score_t (*)[col]) F)[i][j];
-        }
-    }
-
-    return diag;
-}
-
-void **from_diagonal(void ***F, void **diag, size_t row, size_t col) {
-    size_t n_col = ((row < col) ? row : col);
-
-    // Anti-diagonal access and parallelize (comb) when possible
-#ifdef _OPENMP
-#pragma omp parallel for collapse(2) default(none) shared(row, col, n_col, F, diag)
-#endif
-    for (size_t i = 0; i < row; ++i) {
-        for (size_t j = 0; j < col; ++j) {
-            ((score_t (*)[col]) (*F))[i][j] = ((score_t (*)[n_col]) diag)[i + j][j];
-        }
-    }
-
-    return *F;
-}
-
 void nw_generate(void) {
     impl_nw_generate_1();
 }
@@ -117,11 +82,11 @@ void impl_nw_generate_1(void) {
                           i_begin, j_begin,
                           len_a_new, len_b_new};
 
-//    impl_nw_generate_1_block_recur(&init_block, 1);
-    impl_nw_generate_1_block_iter(&init_block);
+    impl_nw_generate_1_block_recur(&init_block, 1);
+//    impl_nw_generate_1_block_iter(&init_block);
 }
 
-void impl_nw_generate_1_block_iter(block_t *restrict block) {
+void impl_nw_generate_1_block_iter(block_t *block) {
     size_t full_hx = block->i_end;
     size_t full_wx = block->j_end;
 
@@ -179,7 +144,7 @@ void impl_nw_generate_1_block_iter(block_t *restrict block) {
     }
 }
 
-void impl_nw_generate_1_block_recur(block_t *restrict block,
+void impl_nw_generate_1_block_recur(block_t *block,
                                     int is_subdivide) {
     size_t hx = block->i_end - block->i_begin;
     size_t wx = block->j_end - block->j_begin;
@@ -253,6 +218,7 @@ void impl_nw_generate_1_block_recur(block_t *restrict block,
 #ifndef DIAGONAL_ARRAY_ACCESS
         for (size_t i = block->i_begin; i < block->i_end; ++i) {
             for (size_t j = block->j_begin; j < block->j_end; ++j) {
+                if (i == 0 || j == 0) continue;
                 score_t _match = pF[i - 1][j - 1] +
                                  default_comparator(seq_a.data[i - 1], seq_b.data[j - 1]);
                 score_t _delete = pF[i - 1][j] + gap_penalty;
@@ -280,11 +246,11 @@ void impl_nw_generate_1_block_recur(block_t *restrict block,
     }
 }
 
-void nw_backtrack(char *restrict *restrict out_a,
-                  char *restrict *restrict out_b,
-                  char *restrict *restrict out_match,
-                  size_t *restrict aligned_len,
-                  score_t *restrict score) {
+void nw_backtrack(char **out_a,
+                  char **out_b,
+                  char **out_match,
+                  size_t *aligned_len,
+                  score_t *score) {
 
     score_t (*pF)[seq_b.len + 1] = (score_t (*)[seq_b.len + 1]) F;
     size_t max_len = seq_a.len + seq_b.len;

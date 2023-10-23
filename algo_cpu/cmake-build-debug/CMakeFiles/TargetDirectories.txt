@@ -1,5 +1,5 @@
-C:/Users/vivat/Desktop/clion/bioinformatics-2110581/algo_cpu/cmake-build-debug/CMakeFiles/algo-nw.dir
-C:/Users/vivat/Desktop/clion/bioinformatics-2110581/algo_cpu/cmake-build-debug/CMakeFiles/algo-sw.dir
-C:/Users/vivat/Desktop/clion/bioinformatics-2110581/algo_cpu/cmake-build-debug/CMakeFiles/algo-nw-openmp.dir
-C:/Users/vivat/Desktop/clion/bioinformatics-2110581/algo_cpu/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/vivat/Desktop/clion/bioinformatics-2110581/algo_cpu/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-debug/CMakeFiles/algo-nw.dir
+/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-debug/CMakeFiles/algo-sw.dir
+/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-debug/CMakeFiles/algo-nw-openmp.dir
+/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/cmake-build-debug/CMakeFiles/rebuild_cache.dir

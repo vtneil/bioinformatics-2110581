@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
     if (seq_a.len < 2 || seq_b.len < 2) { return 2; }
 
 #ifdef _OPENMP
-    omp_set_max_active_levels(2);
+    omp_set_max_active_levels(1);
 #endif
 
     match = strtod(argv[1], NULL);

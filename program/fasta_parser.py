@@ -12,7 +12,7 @@ class FastaSequence:
 
 
 def fasta_iter(filename: str):
-    fh = open(filename)
+    fh = open(filename, mode='r', encoding='utf-8')
     faiter = (x[1] for x in groupby(fh, lambda line: line[0] == '>'))
     for _header in faiter:
         _header_str = _header.__next__()[1:].strip()

@@ -1,6 +1,6 @@
 Tests
 1. Direct 2D sequential
-2. Block iteration sequential
-3. Block iteration parallel
-4. Block recursion sequential
-5. Block recursion parallel 1 depth
+2. Block iteration parallel
+3. Block iteration sequential
+4. Block recursion parallel 1 depth
+5. Block recursion sequential
