@@ -5,8 +5,10 @@ set(CMAKE_CUDA_STANDARD 17)
 
 #set(CMAKE_CUDA_COMPILER "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v12.3\\bin\\nvcc.exe")
 
+include_directories(include)
+
 add_executable(algo_cuda main.cu)
 set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -v")
 
-#set_target_properties(algo_cuda PROPERTIES
-#        CUDA_SEPARABLE_COMPILATION ON)
+set_target_properties(algo_cuda PROPERTIES
+        CUDA_SEPARABLE_COMPILATION ON)
