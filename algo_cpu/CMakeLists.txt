@@ -14,14 +14,14 @@ add_executable(algo-nw
         ${SOURCES}
         main_nw.c
 )
-target_compile_options(algo-nw PRIVATE -O2)
+target_compile_options(algo-nw PRIVATE -O3)
 
 
 add_executable(algo-sw
         ${SOURCES}
         main_sw.c
 )
-target_compile_options(algo-sw PRIVATE -O2)
+target_compile_options(algo-sw PRIVATE -O3)
 
 
 # CPU: OpenMP Parallel
@@ -29,5 +29,5 @@ add_executable(algo-nw-openmp
         ${SOURCES}
         main_nw.c
 )
-target_compile_options(algo-nw-openmp PRIVATE -fopenmp -v)
-target_link_libraries(algo-nw-openmp PRIVATE -fopenmp -v)
+target_compile_options(algo-nw-openmp PRIVATE -O3 -fopenmp -v)
+target_link_libraries(algo-nw-openmp PRIVATE -O3 -fopenmp -v)

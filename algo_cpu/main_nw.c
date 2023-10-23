@@ -4,6 +4,7 @@
 //#define DEBUG_PRINT
 #define MAX_STR_LEN 4000000000ull
 
+char join_char = '*';
 score_t match, mismatch, gap_penalty;
 sequence_t seq_a, seq_b;
 void **F;
@@ -21,12 +22,13 @@ int main(int argc, char **argv) {
     if (seq_a.len < 2 || seq_b.len < 2) { return 2; }
 
 #ifdef _OPENMP
-    omp_set_max_active_levels(1);
+    omp_set_max_active_levels(2);
 #endif
 
     match = strtod(argv[1], NULL);
     mismatch = strtod(argv[2], NULL);
     gap_penalty = strtod(argv[3], NULL);
+    if (argc == 7) join_char = *argv[6];
 
     // seq_a.len >= seq_b.len always
     if (seq_a.len < seq_b.len) {
@@ -49,7 +51,14 @@ int main(int argc, char **argv) {
     size_t len_a = seq_a.len + 1;
     size_t len_b = seq_b.len + 1;
 
+    printf("    ");
+    for (size_t j = 0; j < len_b; ++j) {
+        printf("%4zu", j);
+    }
+    printf("\n");
+
     for (size_t i = 0; i < len_a; ++i) {
+        printf("%4zu", i);
         for (size_t j = 0; j < len_b; ++j) {
             printf("%4.0f", ((score_t (*)[len_b]) F)[i][j]);
         }

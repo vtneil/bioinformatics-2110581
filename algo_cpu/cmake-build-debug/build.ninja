@@ -51,14 +51,14 @@ build cmake_object_order_depends_target_algo-nw: phony || CMakeFiles/algo-nw.dir
 
 build CMakeFiles/algo-nw.dir/include/bio_cpu.c.o: C_COMPILER__algo-nw_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include/bio_cpu.c || cmake_object_order_depends_target_algo-nw
   DEP_FILE = CMakeFiles/algo-nw.dir/include/bio_cpu.c.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O2
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O3
   INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
   OBJECT_DIR = CMakeFiles/algo-nw.dir
   OBJECT_FILE_DIR = CMakeFiles/algo-nw.dir/include
 
 build CMakeFiles/algo-nw.dir/main_nw.c.o: C_COMPILER__algo-nw_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/main_nw.c || cmake_object_order_depends_target_algo-nw
   DEP_FILE = CMakeFiles/algo-nw.dir/main_nw.c.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O2
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O3
   INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
   OBJECT_DIR = CMakeFiles/algo-nw.dir
   OBJECT_FILE_DIR = CMakeFiles/algo-nw.dir
@@ -90,14 +90,14 @@ build cmake_object_order_depends_target_algo-sw: phony || CMakeFiles/algo-sw.dir
 
 build CMakeFiles/algo-sw.dir/include/bio_cpu.c.o: C_COMPILER__algo-sw_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include/bio_cpu.c || cmake_object_order_depends_target_algo-sw
   DEP_FILE = CMakeFiles/algo-sw.dir/include/bio_cpu.c.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O2
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O3
   INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
   OBJECT_DIR = CMakeFiles/algo-sw.dir
   OBJECT_FILE_DIR = CMakeFiles/algo-sw.dir/include
 
 build CMakeFiles/algo-sw.dir/main_sw.c.o: C_COMPILER__algo-sw_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/main_sw.c || cmake_object_order_depends_target_algo-sw
   DEP_FILE = CMakeFiles/algo-sw.dir/main_sw.c.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O2
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O3
   INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
   OBJECT_DIR = CMakeFiles/algo-sw.dir
   OBJECT_FILE_DIR = CMakeFiles/algo-sw.dir
@@ -129,14 +129,14 @@ build cmake_object_order_depends_target_algo-nw-openmp: phony || CMakeFiles/algo
 
 build CMakeFiles/algo-nw-openmp.dir/include/bio_cpu.c.o: C_COMPILER__algo-nw-openmp_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include/bio_cpu.c || cmake_object_order_depends_target_algo-nw-openmp
   DEP_FILE = CMakeFiles/algo-nw-openmp.dir/include/bio_cpu.c.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -fopenmp -v
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O3 -fopenmp -v
   INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
   OBJECT_DIR = CMakeFiles/algo-nw-openmp.dir
   OBJECT_FILE_DIR = CMakeFiles/algo-nw-openmp.dir/include
 
 build CMakeFiles/algo-nw-openmp.dir/main_nw.c.o: C_COMPILER__algo-nw-openmp_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/main_nw.c || cmake_object_order_depends_target_algo-nw-openmp
   DEP_FILE = CMakeFiles/algo-nw-openmp.dir/main_nw.c.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -fopenmp -v
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O3 -fopenmp -v
   INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
   OBJECT_DIR = CMakeFiles/algo-nw-openmp.dir
   OBJECT_FILE_DIR = CMakeFiles/algo-nw-openmp.dir
@@ -151,7 +151,7 @@ build CMakeFiles/algo-nw-openmp.dir/main_nw.c.o: C_COMPILER__algo-nw-openmp_unsc
 
 build algo-nw-openmp: C_EXECUTABLE_LINKER__algo-nw-openmp_Debug CMakeFiles/algo-nw-openmp.dir/include/bio_cpu.c.o CMakeFiles/algo-nw-openmp.dir/main_nw.c.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk
-  LINK_LIBRARIES = -fopenmp  -v
+  LINK_LIBRARIES = -O3  -fopenmp  -v
   OBJECT_DIR = CMakeFiles/algo-nw-openmp.dir
   POST_BUILD = :
   PRE_LINK = :

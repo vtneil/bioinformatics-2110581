@@ -1,5 +1,6 @@
 #include "bio_cpu.h"
 
+extern char join_char;
 extern score_t match, mismatch, gap_penalty;
 extern sequence_t seq_a, seq_b;
 extern void **F;
@@ -75,11 +76,11 @@ void **from_diagonal(void ***F, void **diag, size_t row, size_t col) {
     return *F;
 }
 
-void nw_generate() {
+void nw_generate(void) {
     impl_nw_generate_1();
 }
 
-void impl_nw_generate_1() {
+void impl_nw_generate_1(void) {
 
     size_t len_a_new = seq_a.len + 1;
     size_t len_b_new = seq_b.len + 1;
@@ -109,42 +110,81 @@ void impl_nw_generate_1() {
     }
 #endif
 
-    // Block calculation starts at i=1, j=1.
-    size_t i_begin = 1;
-    size_t j_begin = 1;
+    // Block calculation starts at i=0, j=0.
+    size_t i_begin = 0;
+    size_t j_begin = 0;
     block_t init_block = {&F, len_a_new, len_b_new,
                           i_begin, j_begin,
                           len_a_new, len_b_new};
 
-    impl_nw_generate_1_block_recur(&init_block, 1);
+//    impl_nw_generate_1_block_recur(&init_block, 1);
+    impl_nw_generate_1_block_iter(&init_block);
 }
 
-void impl_nw_generate_1_block_iter(block_t *block,
-                                   int split_block) {
-    size_t hx = block->i_end - block->i_begin;
-    size_t wx = block->j_end - block->j_begin;
-    size_t count_i = CEIL_DIV(hx, MAX_BLOCK_WIDTH);
-    size_t count_j = CEIL_DIV(wx, MAX_BLOCK_WIDTH);
+void impl_nw_generate_1_block_iter(block_t *restrict block) {
+    size_t full_hx = block->i_end;
+    size_t full_wx = block->j_end;
 
-    for (size_t i = 0; i < (count_i + count_j - 1); ++i) {
-        size_t j_start = i < count_j ? 0 : i - count_j + 1;
-        size_t j_end = i < count_i ? i + 1 : count_i;
+    DIV_MOD(size_t, full_i, rem_i,
+            full_hx, MAX_BLOCK_WIDTH)
+    DIV_MOD(size_t, full_j, rem_j,
+            full_wx, MAX_BLOCK_WIDTH)
 
-        for (size_t j = j_start; j < j_end; ++j) {
-            size_t diag_i = j;
-            size_t diag_j = i - j;
+    size_t count_i = full_i + (rem_i != 0);
+    size_t count_j = full_j + (rem_j != 0);
 
-            // todo: NW algo inside a small block (N^2)
+    size_t block_hx = full_hx < MAX_BLOCK_WIDTH ? full_hx : MAX_BLOCK_WIDTH;
+    size_t block_wx = full_wx < MAX_BLOCK_WIDTH ? full_wx : MAX_BLOCK_WIDTH;
+
+    score_t (*pF)[block->full_w] = (score_t (*)[block->full_w]) (*(block->ptr));
+
+    // Access blocks in anti-diagonal pattern (for parallelism)
+#ifdef _OPENMP
+#pragma omp parallel default(none) \
+    shared(count_i, count_j, rem_i, rem_j, block, block_hx, block_wx, pF, seq_a, seq_b, gap_penalty)
+#endif
+    for (size_t h_block_i = 0; h_block_i < (count_i + count_j - 1); ++h_block_i) {
+        size_t j_start = h_block_i < count_j ? 0 : h_block_i - count_j + 1;
+        size_t j_end = h_block_i < count_i ? h_block_i + 1 : count_i;
+
+#ifdef _OPENMP
+#pragma omp for schedule(static)
+#endif
+        for (size_t h_block_j = j_start; h_block_j < j_end; ++h_block_j) {
+            size_t block_i = h_block_j;
+            size_t block_j = h_block_i - h_block_j;
+
+            size_t ii_start = block_i * block_hx;
+            size_t jj_start = block_j * block_wx;
+            size_t ii_stop = rem_i != 0 && block_i == count_i - 1 ?
+                             block_i * block_hx + rem_i :
+                             (block_i + 1) * block_hx;
+            size_t jj_stop = rem_j != 0 && block_j == count_j - 1 ?
+                             block_j * block_wx + rem_j :
+                             (block_j + 1) * block_wx;
+
+            // Access within the block in row sweeping pattern (better cache locality)
+            for (size_t i = ii_start; i < ii_stop; ++i) {
+                for (size_t j = jj_start; j < jj_stop; ++j) {
+                    if (i == 0 || j == 0) continue;
+                    score_t _match = pF[i - 1][j - 1] +
+                                     default_comparator(seq_a.data[i - 1],
+                                                        seq_b.data[j - 1]);
+                    score_t _delete = pF[i - 1][j] + gap_penalty;
+                    score_t _insert = pF[i][j - 1] + gap_penalty;
+                    pF[i][j] = max(_match, max(_delete, _insert));
+                }
+            }
         }
     }
 }
 
-void impl_nw_generate_1_block_recur(block_t *block,
-                                    int split_block) {
+void impl_nw_generate_1_block_recur(block_t *restrict block,
+                                    int is_subdivide) {
     size_t hx = block->i_end - block->i_begin;
     size_t wx = block->j_end - block->j_begin;
 
-    if (split_block && hx * wx >= MAX_BLOCK_SIZE) {
+    if (is_subdivide && hx * wx >= MAX_BLOCK_SIZE) {
         size_t new_hx = hx / 2;
         size_t new_wx = wx / 2;
 
@@ -162,10 +202,12 @@ void impl_nw_generate_1_block_recur(block_t *block,
         b.j_end = block->j_begin + new_wx;
         impl_nw_generate_1_block_recur(&b, 1);
 
+#ifdef _OPENMP
 #pragma omp parallel sections default(none) shared(block, new_hx, new_wx)
         {
 #pragma omp section
             {
+#endif
                 // block 1
                 block_t b1 = {
                         block->ptr,
@@ -177,9 +219,11 @@ void impl_nw_generate_1_block_recur(block_t *block,
                         block->j_end
                 };
                 impl_nw_generate_1_block_recur(&b1, 1);
+#ifdef _OPENMP
             }
 #pragma omp section
             {
+#endif
                 // block 2
                 block_t b2 = {
                         block->ptr,
@@ -191,8 +235,10 @@ void impl_nw_generate_1_block_recur(block_t *block,
                         block->j_begin + new_wx
                 };
                 impl_nw_generate_1_block_recur(&b2, 1);
+#ifdef _OPENMP
             }
         }
+#endif
 
         // block 3
         b.i_begin = block->i_begin + new_hx;
@@ -234,8 +280,11 @@ void impl_nw_generate_1_block_recur(block_t *block,
     }
 }
 
-void nw_backtrack(char **out_a, char **out_b, char **out_match,
-                  size_t *aligned_len, score_t *score) {
+void nw_backtrack(char *restrict *restrict out_a,
+                  char *restrict *restrict out_b,
+                  char *restrict *restrict out_match,
+                  size_t *restrict aligned_len,
+                  score_t *restrict score) {
 
     score_t (*pF)[seq_b.len + 1] = (score_t (*)[seq_b.len + 1]) F;
     size_t max_len = seq_a.len + seq_b.len;
@@ -290,12 +339,22 @@ void nw_backtrack(char **out_a, char **out_b, char **out_match,
     *out_b = new_string(idx);
     *out_match = new_string(idx);
 
-#pragma omp parallel for simd schedule(static) default(none) shared(idx, out_a, tmp_a, out_b, tmp_b, out_match)
-    for (size_t k = 0; k < idx; ++k) {
-        (*out_a)[k] = tmp_a[idx - k - 1];
-        (*out_b)[k] = tmp_b[idx - k - 1];
-        (*out_match)[k] = ((*out_a)[k] == (*out_b)[k]) ? '|' : ' ';
+#ifdef _OPENMP
+#pragma omp parallel sections default(none) shared(out_a, out_b, out_match, tmp_a, tmp_b, idx, join_char)
+    {
+#pragma omp section
+        for (size_t k = 0; k < idx; ++k) (*out_a)[k] = tmp_a[idx - k - 1];
+#pragma omp section
+        for (size_t k = 0; k < idx; ++k) (*out_b)[k] = tmp_b[idx - k - 1];
     }
+    for (size_t k = 0; k < idx; ++k) (*out_match)[k] = ((*out_a)[k] == (*out_b)[k]) ? join_char : ' ';
+#else
+    for (size_t k = 0; k < idx; ++k) {
+            (*out_a)[k] = tmp_a[idx - k - 1];
+            (*out_b)[k] = tmp_b[idx - k - 1];
+            (*out_match)[k] = ((*out_a)[k] == (*out_b)[k]) ? join_char : ' ';
+    }
+#endif
 
     *aligned_len = idx;
 
