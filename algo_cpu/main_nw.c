@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include "bio_cpu.h"
+#include "fasta.h"
 
 //#define DEBUG_PRINT
-#define MAX_STR_LEN 4000000000ull
+#define MAX_STR_LEN (4000ull * 1000ull * 1000ull)
 
 char join_char = '*';
 score_t match, mismatch, gap_penalty;
@@ -11,15 +12,37 @@ void **F;
 
 int main(int argc, char **argv) {
     if (argc != 6 && argc != 7)
-        return 1;
+        exit(1);
 
-    seq_a.data = argv[4];
-    seq_b.data = argv[5];
+    FASTAFILE *ffp;
 
-    seq_a.len = strnlen(seq_a.data, MAX_STR_LEN);
-    seq_b.len = strnlen(seq_b.data, MAX_STR_LEN);
+    // First Sequence
+    ffp = OpenFASTA(argv[4]);
+    if (ffp != NULL) {
+        ReadFASTA(ffp, &seq_a.data, &seq_a.len);
+        CloseFASTA(ffp);
+    } else {
+        seq_a.data = argv[4];
+        seq_a.len = strnlen(seq_a.data, MAX_STR_LEN);
+    }
 
-    if (seq_a.len < 2 || seq_b.len < 2) { return 2; }
+    // Second Sequence
+    ffp = OpenFASTA(argv[5]);
+    if (ffp != NULL) {
+        ReadFASTA(ffp, &seq_b.data, &seq_b.len);
+        CloseFASTA(ffp);
+    } else {
+        seq_b.data = argv[5];
+        seq_b.len = strnlen(seq_b.data, MAX_STR_LEN);
+    }
+
+    if (seq_a.len < 2 || seq_b.len < 2) {
+        if (seq_a.data != argv[4] && seq_a.data != NULL)
+            free(seq_a.data);
+        if (seq_b.data != argv[5] && seq_b.data != NULL)
+            free(seq_b.data);
+        exit(2);
+    }
 
 #ifdef _OPENMP
     omp_set_max_active_levels(1);
@@ -30,13 +53,15 @@ int main(int argc, char **argv) {
     gap_penalty = strtod(argv[3], NULL);
     if (argc == 7) join_char = *argv[6];
 
-    // seq_a.len >= seq_b.len always
+    // seq_a.len >= seq_b.len always, swap if not
     if (seq_a.len < seq_b.len) {
         size_t tmp = seq_a.len;
         seq_a.len = seq_b.len;
         seq_b.len = tmp;
-        seq_a.data = argv[5];
-        seq_b.data = argv[4];
+
+        char *stmp = seq_a.data;
+        seq_a.data = seq_b.data;
+        seq_b.data = stmp;
     }
 
     char *o1 = NULL;
@@ -81,5 +106,10 @@ int main(int argc, char **argv) {
     free(o2);
     free(om);
 
-    return 0;
+    if (seq_a.data != argv[4] && seq_a.data != NULL)
+        free(seq_a.data);
+    if (seq_b.data != argv[5] && seq_b.data != NULL)
+        free(seq_b.data);
+
+    exit(0);
 }

@@ -56,6 +56,13 @@ build CMakeFiles/algo-nw.dir/include/bio_cpu.c.o: C_COMPILER__algo-nw_unscanned_
   OBJECT_DIR = CMakeFiles/algo-nw.dir
   OBJECT_FILE_DIR = CMakeFiles/algo-nw.dir/include
 
+build CMakeFiles/algo-nw.dir/include/fasta.c.o: C_COMPILER__algo-nw_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include/fasta.c || cmake_object_order_depends_target_algo-nw
+  DEP_FILE = CMakeFiles/algo-nw.dir/include/fasta.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O3 -flto
+  INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
+  OBJECT_DIR = CMakeFiles/algo-nw.dir
+  OBJECT_FILE_DIR = CMakeFiles/algo-nw.dir/include
+
 build CMakeFiles/algo-nw.dir/main_nw.c.o: C_COMPILER__algo-nw_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/main_nw.c || cmake_object_order_depends_target_algo-nw
   DEP_FILE = CMakeFiles/algo-nw.dir/main_nw.c.o.d
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O3 -flto
@@ -71,7 +78,7 @@ build CMakeFiles/algo-nw.dir/main_nw.c.o: C_COMPILER__algo-nw_unscanned_Debug /U
 #############################################
 # Link the executable algo-nw
 
-build algo-nw: C_EXECUTABLE_LINKER__algo-nw_Debug CMakeFiles/algo-nw.dir/include/bio_cpu.c.o CMakeFiles/algo-nw.dir/main_nw.c.o
+build algo-nw: C_EXECUTABLE_LINKER__algo-nw_Debug CMakeFiles/algo-nw.dir/include/bio_cpu.c.o CMakeFiles/algo-nw.dir/include/fasta.c.o CMakeFiles/algo-nw.dir/main_nw.c.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk
   OBJECT_DIR = CMakeFiles/algo-nw.dir
   POST_BUILD = :
@@ -95,6 +102,13 @@ build CMakeFiles/algo-sw.dir/include/bio_cpu.c.o: C_COMPILER__algo-sw_unscanned_
   OBJECT_DIR = CMakeFiles/algo-sw.dir
   OBJECT_FILE_DIR = CMakeFiles/algo-sw.dir/include
 
+build CMakeFiles/algo-sw.dir/include/fasta.c.o: C_COMPILER__algo-sw_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include/fasta.c || cmake_object_order_depends_target_algo-sw
+  DEP_FILE = CMakeFiles/algo-sw.dir/include/fasta.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O3 -flto
+  INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
+  OBJECT_DIR = CMakeFiles/algo-sw.dir
+  OBJECT_FILE_DIR = CMakeFiles/algo-sw.dir/include
+
 build CMakeFiles/algo-sw.dir/main_sw.c.o: C_COMPILER__algo-sw_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/main_sw.c || cmake_object_order_depends_target_algo-sw
   DEP_FILE = CMakeFiles/algo-sw.dir/main_sw.c.o.d
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O3 -flto
@@ -110,7 +124,7 @@ build CMakeFiles/algo-sw.dir/main_sw.c.o: C_COMPILER__algo-sw_unscanned_Debug /U
 #############################################
 # Link the executable algo-sw
 
-build algo-sw: C_EXECUTABLE_LINKER__algo-sw_Debug CMakeFiles/algo-sw.dir/include/bio_cpu.c.o CMakeFiles/algo-sw.dir/main_sw.c.o
+build algo-sw: C_EXECUTABLE_LINKER__algo-sw_Debug CMakeFiles/algo-sw.dir/include/bio_cpu.c.o CMakeFiles/algo-sw.dir/include/fasta.c.o CMakeFiles/algo-sw.dir/main_sw.c.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk
   OBJECT_DIR = CMakeFiles/algo-sw.dir
   POST_BUILD = :
@@ -134,6 +148,13 @@ build CMakeFiles/algo-nw-openmp.dir/include/bio_cpu.c.o: C_COMPILER__algo-nw-ope
   OBJECT_DIR = CMakeFiles/algo-nw-openmp.dir
   OBJECT_FILE_DIR = CMakeFiles/algo-nw-openmp.dir/include
 
+build CMakeFiles/algo-nw-openmp.dir/include/fasta.c.o: C_COMPILER__algo-nw-openmp_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include/fasta.c || cmake_object_order_depends_target_algo-nw-openmp
+  DEP_FILE = CMakeFiles/algo-nw-openmp.dir/include/fasta.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O3 -fopenmp -flto
+  INCLUDES = -I/Users/vt/Desktop/git_target/bioinformatics/algo_cpu/include
+  OBJECT_DIR = CMakeFiles/algo-nw-openmp.dir
+  OBJECT_FILE_DIR = CMakeFiles/algo-nw-openmp.dir/include
+
 build CMakeFiles/algo-nw-openmp.dir/main_nw.c.o: C_COMPILER__algo-nw-openmp_unscanned_Debug /Users/vt/Desktop/git_target/bioinformatics/algo_cpu/main_nw.c || cmake_object_order_depends_target_algo-nw-openmp
   DEP_FILE = CMakeFiles/algo-nw-openmp.dir/main_nw.c.o.d
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics -O3 -fopenmp -flto
@@ -149,7 +170,7 @@ build CMakeFiles/algo-nw-openmp.dir/main_nw.c.o: C_COMPILER__algo-nw-openmp_unsc
 #############################################
 # Link the executable algo-nw-openmp
 
-build algo-nw-openmp: C_EXECUTABLE_LINKER__algo-nw-openmp_Debug CMakeFiles/algo-nw-openmp.dir/include/bio_cpu.c.o CMakeFiles/algo-nw-openmp.dir/main_nw.c.o
+build algo-nw-openmp: C_EXECUTABLE_LINKER__algo-nw-openmp_Debug CMakeFiles/algo-nw-openmp.dir/include/bio_cpu.c.o CMakeFiles/algo-nw-openmp.dir/include/fasta.c.o CMakeFiles/algo-nw-openmp.dir/main_nw.c.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk
   LINK_LIBRARIES = -O3  -fopenmp  -flto
   OBJECT_DIR = CMakeFiles/algo-nw-openmp.dir

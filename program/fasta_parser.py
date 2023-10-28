@@ -20,7 +20,7 @@ def fasta_iter(filename: str):
         yield FastaSequence(_header_str, _seq)
 
 
-def split_string(input_string, max_length=60):
+def str_block_iter(input_string, max_length=60):
     lines = []
     while len(input_string) > max_length:
         idx = max_length
@@ -28,7 +28,8 @@ def split_string(input_string, max_length=60):
             idx -= 1
         if idx == 0:
             idx = max_length
-        lines.append(input_string[:idx])
+
+        yield input_string[:idx]
         input_string = input_string[idx:].strip()
-    lines.append(input_string)
-    return lines
+
+    yield input_string

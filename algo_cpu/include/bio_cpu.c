@@ -82,7 +82,7 @@ void impl_nw_generate_1(void) {
                           i_begin, j_begin,
                           len_a_new, len_b_new};
 
-    impl_nw_generate_1_block_recur(&init_block, 1);
+    impl_nw_generate_1_block_recur(&init_block, 0);
 //    impl_nw_generate_1_block_iter(&init_block);
 }
 

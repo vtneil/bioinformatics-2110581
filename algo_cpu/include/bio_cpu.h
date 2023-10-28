@@ -12,8 +12,7 @@
 #endif
 
 #define DIV_MOD(T, Q, R, A, B)      T Q = (A) / (B); T R = (A) % (B);
-#define MAX_BLOCK_WIDTH             16384ULL
-//#define MAX_BLOCK_WIDTH             5ULL  // Test
+#define MAX_BLOCK_WIDTH             64ULL  // to fit 64KB Cache with double
 #define MAX_BLOCK_SIZE              (MAX_BLOCK_WIDTH * MAX_BLOCK_WIDTH)
 //#define DIAGONAL_ARRAY_ACCESS
 
@@ -30,7 +29,7 @@ typedef struct {
 } block_t;
 
 typedef struct {
-    const char *data;
+    char *data;
     size_t len;
 } sequence_t;
 

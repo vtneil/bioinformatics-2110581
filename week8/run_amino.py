@@ -11,4 +11,4 @@ if __name__ == '__main__':
         print(f'>{seq.name}')
         s = Seq(data=seq.seq)
         tr = s.translate().__str__()
-        print('\n'.join(split_string(tr, max_length=60)))
+        print('\n'.join(str_block_iter(tr, max_length=60)))

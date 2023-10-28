@@ -7,6 +7,7 @@ set(CMAKE_C_STANDARD 17)
 include_directories(include)
 set(SOURCES
         include/bio_cpu.c
+        include/fasta.c
 )
 
 # CPU: Serial
