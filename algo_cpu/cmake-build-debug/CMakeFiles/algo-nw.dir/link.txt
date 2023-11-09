@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/algo-nw.dir/include/bio_cpu.c.o CMakeFiles/algo-nw.dir/include/fasta.c.o CMakeFiles/algo-nw.dir/main_nw.c.o -o algo-nw 

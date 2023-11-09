@@ -33,9 +33,16 @@ typedef struct {
     size_t len;
 } sequence_t;
 
-__attribute__((always_inline)) extern score_t default_comparator(char a, char b);
+#if defined(__GCC__)
+__attribute__((always_inline))
+#elif defined(_MSC_VER)
+__forceinline
+#endif
+extern score_t default_comparator(char a, char b);
 
+#ifndef max
 extern score_t max(score_t a, score_t b);
+#endif
 
 extern int find_max(size_t argc, ...);
 

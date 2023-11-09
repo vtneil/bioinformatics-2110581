@@ -5,9 +5,16 @@ extern score_t match, mismatch, gap_penalty;
 extern sequence_t seq_a, seq_b;
 extern void **F;
 
-__attribute__((always_inline)) score_t default_comparator(char a, char b) { return (a == b) ? match : mismatch; }
+#if defined(__GCC__)
+__attribute__((always_inline))
+#elif defined(_MSC_VER)
+__forceinline
+#endif
+score_t default_comparator(char a, char b) { return (a == b) ? match : mismatch; }
 
+#ifndef max
 score_t max(score_t a, score_t b) { return (a > b) ? a : b; }
+#endif
 
 int find_max(size_t argc, ...) {
     int max, current;

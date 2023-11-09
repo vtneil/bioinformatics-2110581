@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/algo-sw.dir/include/bio_cpu.c.o CMakeFiles/algo-sw.dir/include/fasta.c.o CMakeFiles/algo-sw.dir/main_sw.c.o -o algo-sw 

@@ -1,0 +1,3 @@
+C:/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_gpu/cmake-build-debug/CMakeFiles/algo_gpu.dir
+C:/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_gpu/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_gpu/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="algo_cpu"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="algo-nw">
+				<Option output="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/algo-nw" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 algo-nw"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="algo-nw/fast">
+				<Option output="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/algo-nw" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 algo-nw/fast"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="algo-sw">
+				<Option output="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/algo-sw" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 algo-sw"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="algo-sw/fast">
+				<Option output="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/algo-sw" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 algo-sw/fast"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="algo-nw-openmp">
+				<Option output="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/algo-nw-openmp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 algo-nw-openmp"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="algo-nw-openmp/fast">
+				<Option output="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/algo-nw-openmp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 algo-nw-openmp/fast"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j16 -f &quot;/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/include/bio_cpu.c">
+			<Option target="algo-nw"/>
+			<Option target="algo-sw"/>
+			<Option target="algo-nw-openmp"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/include/bio_cpu.h">
+			<Option target="algo-nw"/>
+			<Option target="algo-sw"/>
+			<Option target="algo-nw-openmp"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/include/fasta.c">
+			<Option target="algo-nw"/>
+			<Option target="algo-sw"/>
+			<Option target="algo-nw-openmp"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/include/fasta.h">
+			<Option target="algo-nw"/>
+			<Option target="algo-sw"/>
+			<Option target="algo-nw-openmp"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/main_nw.c">
+			<Option target="algo-nw"/>
+			<Option target="algo-nw-openmp"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/main_sw.c">
+			<Option target="algo-sw"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/vivat/Desktop/git_target/bioinformatics-2110581/algo_cpu/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
