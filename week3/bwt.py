@@ -13,6 +13,8 @@ def ibwt_naive(compressed: str):
 
 
 if __name__ == '__main__':
-    text = 'banana'
+    text = 'final'
     x = bwt(text)
     print(x)
+
+    print(ibwt_naive('xxyy$'))
